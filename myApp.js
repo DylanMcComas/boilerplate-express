@@ -1,5 +1,8 @@
 let express = require('express');
 let app = express();
+let bodyParser = require('body-parser');
+const { application } = require('express');
+
 
 let absolutePath = __dirname + "/views/index.html"
 
@@ -18,6 +21,15 @@ app.use((req, res, next) => {
 });
 
 app.use("/public", express.static(__dirname + "/public"));
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+
+// app.use((req, res, next) => {
+//     bodyParser.json(req.body);
+//     next();
+// });
 
 
 // ROUTES
