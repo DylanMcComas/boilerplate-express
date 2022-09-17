@@ -8,6 +8,12 @@ let data = {"message": "Hello json"};
 console.log("Hello World");
 console.log("Hello, Dylan");
 
+app.use((req, res, next) => {
+    var string = req.method + " " + req.path + " - " + req.ip;
+
+    console.log(string);
+});
+
 app.get("/", (req, res) => {
     res.sendFile(absolutePath);
 });
