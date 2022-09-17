@@ -8,12 +8,17 @@ let data = {"message": "Hello json"};
 console.log("Hello World");
 console.log("Hello, Dylan");
 
+// MIDDLEWARE
+
 app.use((req, res, next) => {
     var string = req.method + " " + req.path + " - " + req.ip;
 
     console.log(string);
     next();
 });
+
+app.use("/public", express.static(__dirname + "/public"));
+
 
 // ROUTES
 app.get("/", (req, res) => {
@@ -31,9 +36,15 @@ app.get("/now", (req, res, next) => {
     res.send({time: req.time});
 })
 
+app.get("/:word/echo", (req, res) => {
+    const { word } = req.params;
+    res.json({
+        echo: word
+    });
+});
 
 
-app.use("/public", express.static(__dirname + "/public"));
+
 
 
 
