@@ -12,6 +12,7 @@ app.use((req, res, next) => {
     var string = req.method + " " + req.path + " - " + req.ip;
 
     console.log(string);
+    next();
 });
 
 app.get("/", (req, res) => {
