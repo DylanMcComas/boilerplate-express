@@ -15,6 +15,7 @@ app.use((req, res, next) => {
     next();
 });
 
+// ROUTES
 app.get("/", (req, res) => {
     res.sendFile(absolutePath);
 });
@@ -22,6 +23,15 @@ app.get("/", (req, res) => {
 app.get("/json", (req, res) => {
     res.json(data);
 });
+
+app.get("/now", (req, res, next) => {
+    req.time = new Date().toString();
+    next();
+}, (req, res) => {
+    res.send({time: req.time});
+})
+
+
 
 app.use("/public", express.static(__dirname + "/public"));
 
